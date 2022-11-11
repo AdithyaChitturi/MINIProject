@@ -1,0 +1,28 @@
+
+    function load_groups(course_id,group_id)
+    {
+        var course= document.getElementById(course_id);
+        var group = document.getElementById(group_id);
+        console.log(course.value);
+        group.value="";
+        group.innerHTML="";
+        {% for course in courses %}
+
+            if(course.value == "{{course}}")
+            {
+                {% for model in groups %}
+
+                    {% if school in model%}
+
+                        var newOption = document.createElement("option");
+                        newOption.value="{{ model }}";
+                        newOption.innerHTML="{{ model }}";
+                        group.options.add(newOption);
+
+                    {% endif %}
+                {% endfor %}
+            }
+
+        {% endfor %}
+
+    }
